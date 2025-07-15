@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collation = "user_entity")
+@Document(collection = "user_entity")
 public class User {
 
     @Id
