@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Data
@@ -15,7 +17,8 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class Role {
     @MongoId
     @Indexed(name = "role_ids")
-    private String roleId;
+    @Field(targetType = FieldType.DECIMAL128)
+    private Long roleId;
 
     @Indexed(name = "name")
     private String name;
