@@ -5,19 +5,17 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "user_entity")
+@Document(collection = "user_cl")
 public class User {
 
     @Id
-    private String id;
+    private String userId;
     private String name;
-    private String email;
-    private String document;
     private String password;
-    private Timestamp created;
-    private Timestamp updated;
+    private Set<Role> roles;
 }

@@ -9,13 +9,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "adress_entity")
-public class Address {
+@Document(collection = "role_cl")
+public class Role {
     @Id
-    private String id;
-    private String userId;
-    private String street;
-    private String city;
-    private String state;
-    private String cep;
+    private String roleId;
+    private String name;
 }
+
