@@ -10,12 +10,14 @@ import java.util.List;
 @Component
 public class MongoSeeder
     implements CommandLineRunner {
+    // Injetar o RoleRepository
     private final RoleRepository roleRepo;
 
     public MongoSeeder(RoleRepository roleRepo) {
         this.roleRepo = roleRepo;
     }
 
+    // CommandLineRunner que insere as duas roles na collection caso não tenha nada inserido.
     @Override
     public void run(String... args) throws Exception {
         if (roleRepo.count() == 0) {
@@ -25,5 +27,7 @@ public class MongoSeeder
             ));
             System.out.println("[MongoSeeder] Roles iniciais inseridas.");
         }
+
+        // Dessa forma, vai inserir ADMIN e BASIC em qualquer bds novo, mas não vai re-inserir em um bd antigo.
     }
 }

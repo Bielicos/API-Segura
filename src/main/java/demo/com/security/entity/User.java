@@ -20,6 +20,9 @@ public class User {
     @Indexed(name = "user_id")
     private String userId;
 
+    @Indexed(name = "email",  unique = true)
+    private String email;
+
     @Indexed(name = "name")
     private String name;
 
