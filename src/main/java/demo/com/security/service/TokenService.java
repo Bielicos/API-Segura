@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.stream.Collectors;
 
 @Service
 public class TokenService {
@@ -35,12 +36,18 @@ public class TokenService {
         var now = Instant.now();
         var expiresIn = 300L;
 
+        var scopes = user.get().getRoles()
+                .stream()
+                .map(r -> r.getName())
+                .collect(Collectors.joining(" "));
+
         var claims = JwtClaimsSet.builder()
                 .issuer("myBackEnd") // Quem está criando o Token
                 .subject(user.get().getUserId()) // O usuário que solicitou o Token
                 .issuedAt(now) // Data de emissão do Token
                 .expiresAt(now.plusSeconds(expiresIn)) // O tempo de expiração vai ser agora + 300 segundos
-                .build(); // Para fechar, a gente coloca um .build
+                .claim("scope", scopes)
+                .build();
 
         // Para obter o valor do Token, devemos utilizar a nossa chave privada para criptografar esse Token criado acima.
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
