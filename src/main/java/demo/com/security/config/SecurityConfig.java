@@ -38,6 +38,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> {
                     authorize
+                            .requestMatchers(HttpMethod.POST, "/users").permitAll()
                             .requestMatchers(HttpMethod.POST, "/login").permitAll() // A rota "/login" de metodo Post é a única que não precisa de autenticação.
                             .anyRequest().authenticated(); // Faz com que todas as outras rotas precisem de autenticação
                 })
