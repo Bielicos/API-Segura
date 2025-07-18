@@ -7,6 +7,7 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,7 +37,9 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> {
-                    authorize.anyRequest().authenticated();
+                    authorize
+                            .requestMatchers(HttpMethod.POST, "/login").permitAll() // A rota "/login" de metodo Post é a única que não precisa de autenticação.
+                            .anyRequest().authenticated(); // Faz com que todas as outras rotas precisem de autenticação
                 })
                 .csrf(csrf -> csrf.disable())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())) // Digo pro oauth2 que estou utilizando o Token JWT em sua configuração padrão.

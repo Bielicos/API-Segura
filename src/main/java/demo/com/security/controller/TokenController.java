@@ -33,7 +33,7 @@ public class TokenController {
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         var user = userRepository.findByEmail(loginRequest.email());
         // Se não achar o usuário pelo email ou se o login/senha estiver incorreto, vai causar esse exception :
-        if (user.isEmpty() || user.get().isLoginCorrect(loginRequest, bCryptPasswordEncoder)) { // Se o email estiver invalido.
+        if (user.isEmpty() || !user.get().isLoginCorrect(loginRequest, bCryptPasswordEncoder)) { // Se o email estiver invalido.
             throw new BadCredentialsException("Invalid email");
         }
 
