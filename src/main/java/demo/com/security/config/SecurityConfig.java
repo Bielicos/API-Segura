@@ -41,7 +41,7 @@ public class SecurityConfig {
                             .requestMatchers(HttpMethod.POST, "/login").permitAll() // A rota "/login" de metodo Post é a única que não precisa de autenticação.
                             .anyRequest().authenticated(); // Faz com que todas as outras rotas precisem de autenticação
                 })
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable()) // Isso deve estar ativado em ambiente de produção e desativado em ambiente de desenvolvimento
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())) // Digo pro oauth2 que estou utilizando o Token JWT em sua configuração padrão.
                 .sessionManagement(sessionManagement -> {
                     sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
