@@ -1,11 +1,13 @@
 package demo.com.security.entity;
 
+import demo.com.security.dto.LoginRequest;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
 import java.util.Set;
@@ -32,4 +34,9 @@ public class User {
     @DBRef(lazy = true)
     @Indexed(name = "roles")
     private Set<Role> roles;
+
+    public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder) {
+        return passwordEncoder.matches(loginRequest.password(), this.password);
+        // Verifica se a senha que chegou lá é igual a senha do usuário no banco de dados, após criptografar ambas.
+    }
 }
