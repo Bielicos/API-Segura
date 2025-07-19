@@ -1,18 +1,6 @@
 **Spring-Security-Twitter**
 
-Uma API de microblogging desenvolvida com Spring Boot 3.5.3, Spring Security e MongoDB. Permite cadastro e autenticação de usuários, criação e exclusão de posts ("tweets"), além de um feed paginado. Todos os endpoints estão cobertos por testes unitários com JUnit e Mockito.
-
----
-
-## Sumário
-
-* [Funcionalidades](#funcionalidades)
-* [Endpoints](#endpoints)
-* [Tecnologias](#tecnologias)
-* [Pré-requisitos](#pré-requisitos)
-* [Configuração](#configuração)
-* [Execução](#execução)
-* [Testes](#testes)
+Sistema de registro e listagem de usuários, autenticação JWT, controle de acesso por roles ( administrador e usuário comum ), e CRUD básico de tweets (criar, deletar e listar no feed), tudo protegido por Spring Security e MongoDB como armazenamento.
 
 ---
 
