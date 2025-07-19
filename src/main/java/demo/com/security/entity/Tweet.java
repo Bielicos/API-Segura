@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.data.mongodb.core.mapping.FieldType;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.data.mongodb.core.mapping.*;
 
 import java.lang.classfile.TypeAnnotation;
 import java.time.Instant;
@@ -23,6 +20,7 @@ public class Tweet {
     private String tweetId;
 
     @Indexed(name = "user")
+    @DBRef(lazy = true)
     private User user;
 
     @Indexed(name = "content")

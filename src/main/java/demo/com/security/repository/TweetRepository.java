@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TweetRepository
-    extends MongoRepository<Tweet, Long> {
+    extends MongoRepository<Tweet, String> {
+
 }
