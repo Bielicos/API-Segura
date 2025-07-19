@@ -20,14 +20,13 @@ import java.time.Instant;
 public class Tweet {
     @MongoId
     @Indexed(name = "tweet_id")
-    @Field(targetType = FieldType.DECIMAL128)
-    private Long tweetId;
+    private String tweetId;
 
     @Indexed(name = "user")
     private User user;
 
     @Indexed(name = "content")
-    private Integer content;
+    private String content;
 
     @Indexed(name = "creationTimestamp")
     private Instant creationTimestamp;

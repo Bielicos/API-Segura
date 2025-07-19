@@ -43,7 +43,7 @@ public class TokenService {
 
         var claims = JwtClaimsSet.builder()
                 .issuer("myBackEnd") // Quem está criando o Token
-                .subject(user.get().getUserId()) // O usuário que solicitou o Token
+                .subject(user.get().getUserId()) // O ID do usuário que solicitou o Token
                 .issuedAt(now) // Data de emissão do Token
                 .expiresAt(now.plusSeconds(expiresIn)) // O tempo de expiração vai ser agora + 300 segundos
                 .claim("scope", scopes)
